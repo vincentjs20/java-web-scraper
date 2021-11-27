@@ -1,6 +1,5 @@
 package scrapper;
 
-import java.math.BigDecimal;
 
 public class Item {
     private String title;
