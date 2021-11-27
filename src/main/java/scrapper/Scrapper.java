@@ -37,13 +37,14 @@ public class Scrapper {
                     HtmlElement spanTitle = htmlItem.getFirstByXPath(".//span[@class='css-1bjwylw']");
                     HtmlElement spanPrice = htmlItem.getFirstByXPath(".//span[@class='css-o5uqvq']");
                     HtmlElement spanStoreName = (HtmlElement) htmlItem.getByXPath(".//span[@class='css-1kr22w3']").get(1);
-                    String itemPrice = spanPrice == null ? "0.0" : spanPrice.getTextContent();
+                    List<HtmlElement> spanStar = htmlItem.getByXPath(".//img[@class='css-177n1u3']");
 
                     Item item = new Item();
                     item.setTitle(spanTitle == null ? "-" : spanTitle.getTextContent());
                     item.setImageUrl(itemAnchor == null ? "-" : itemAnchor.getHrefAttribute());
-                    item.setPrice(itemPrice);
+                    item.setPrice(spanPrice == null ? "0.0" : spanPrice.getTextContent());
                     item.setStoreName(spanStoreName == null ? "-" : spanStoreName.getTextContent());
+                    item.setRating(spanStar == null ? 0 : spanStar.size());
 
                     itemList.add(item);
 
